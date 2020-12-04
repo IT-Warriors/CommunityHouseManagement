@@ -1,0 +1,8 @@
+- Biểu đồ lớp: (LAN ANH)
+	+ Quản lí cơ sở vật chất
+	+ Quản lí sự kiện
+- Biểu đồ trình tự
+	+ Đăng nhập, đăng xuất (NAM)
+	+ Đăng kí sử dụng (HIẾU)
+	+ Quản lí cơ sở vật chất (MINH)
+	+ Quản lí sự kiện (DƯƠNG)
