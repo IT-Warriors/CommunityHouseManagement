@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@style4.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <JFXTabPane id="tabbar" layoutX="250.0" layoutY="89.0" prefHeight="600.0" prefWidth="1200.0" side="LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab>
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <GridPane layoutX="122.0" layoutY="158.0" minHeight="300.0" minWidth="600.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="View All" underline="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                    <graphic>
+                        <Label id="header" minHeight="100.0" minWidth="300.0" prefHeight="40.0" prefWidth="71.0" style="-fx-background-color: #39e600;" text="HOME" textFill="WHITE">
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="75" />
+                            </graphic>
+                            <padding>
+                                <Insets left="30.0" />
+                            </padding>
+                            <font>
+                                <Font size="50.0" />
+                            </font>
+                        </Label>
+                    </graphic>
+                </Tab>
+                <Tab>
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Text layoutX="622.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back, ">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Text>
+                                <Text fx:id="username" layoutX="755.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="805.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic; -fx-opacity: 0.6;" text="Đăng xuất" underline="true">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Text>
+                                <TableView layoutX="100.0" layoutY="100.0" minHeight="400.0" minWidth="700.0" prefHeight="428.0" prefWidth="700.0">
+                                    <columns>
+                                        <TableColumn prefWidth="512.2666625976562">
+                                            <graphic>
+                                                <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="545.0" text="Bảng tin">
+                                                    <graphic>
+                                                        <FontAwesomeIconView glyphName="MAGAZINE" size="20" />
+                                                    </graphic>
+                                                    <padding>
+                                                        <Insets left="10.0" />
+                                                    </padding>
+                                                </Label>
+                                            </graphic>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="180.5333251953125" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                    <graphic>
+                        <Label minHeight="100.0" minWidth="300.0" stylesheets="@style4.css" text=" Đơn đăng kí" textFill="WHITE">
+                            <font>
+                                <Font size="30.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="ENVELOPE_ALT" size="40" />
+                            </graphic>
+                            <padding>
+                                <Insets left="30.0" />
+                            </padding>
+                        </Label>
+                    </graphic>
+                </Tab>
+                <Tab>
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                    <graphic>
+                        <Label minHeight="100.0" minWidth="300.0" text=" Quản lí CSVC" textFill="WHITE">
+                            <font>
+                                <Font size="30.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="DROPBOX" size="45" text="" />
+                            </graphic>
+                            <padding>
+                                <Insets left="25.0" />
+                            </padding>
+                        </Label>
+                    </graphic>
+                </Tab>
+                <Tab>
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                    <graphic>
+                        <Label minHeight="100.0" minWidth="300.0" text="  Quản lí SK" textFill="WHITE">
+                            <font>
+                                <Font size="30.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="40" />
+                            </graphic>
+                            <padding>
+                                <Insets left="26.0" />
+                            </padding>
+                        </Label>
+                    </graphic>
+                </Tab>
+            </tabs>
+        </JFXTabPane>
+    </children>
+</AnchorPane>

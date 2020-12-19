@@ -1,19 +1,13 @@
 package views;
 
 import controllers.LoginController;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import ourcontroller.CreateGeneralScene;
+import communityhousecontroller.CreateGeneralScene;
 
-import java.awt.Window;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 /**
  *
