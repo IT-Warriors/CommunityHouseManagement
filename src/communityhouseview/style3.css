@@ -1,0 +1,127 @@
+.header {
+	-fx-background-color: #00a032;
+	-fx-font-size: 30px;
+	-fx-font-family: "Verdana";
+}
+
+.header:hover {
+	-fx-background-color: #000;
+	-fx-cursor: hand;
+	
+}
+
+.tab {
+	-fx-background-color: #666666;
+	-fx-font-size: 20px;
+	-fx-font-family: "Verdana";
+}
+
+.tab:hover {
+	-fx-background-color: #000;
+		-fx-cursor: hand;
+}
+
+.newstable {
+	-fx-min-height: 300px;
+
+}
+
+.date-picker .text-field {
+    -fx-font: 20px "Arial";
+}
+
+.date-picker {
+    -fx-font: 15px "Arial";
+}
+
+.dottedline {
+  	-fx-stroke-dash-array: 12;
+}
+
+.table-view{
+    -fx-background-color: #f7f7f7;
+ }
+
+.table-view .column-header {
+     -fx-background-color: transparent;
+} 
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0.0%, #424141 100.0%);
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent; 
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.table-view .table-column{
+    -fx-alignment:center;
+}
+
+.table-view .table-cell{
+    -fx-font-size: 16px;           
+}
+
+.table-row-cell{
+    -fx-background-color: white;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em; 
+}
+
+.table-row-cell:odd{
+    -fx-background-color:  #ffd480;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em;  
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #00ccff;
+}
+
+.CRUD {
+	-fx-border-radius: 0 0 0 0;
+	-fx-background-color: #999999;
+	-fx-font-size: 20px;
+}
+
+.button {
+	-fx-background-radius: 0;
+}
+
+.button:hover {
+	-fx-cursor: hand;
+}
+
+.searchField {
+	-fx-background-radius: 30;
+}
+
+.searchIcon {
+	-fx-border-color: #666;
+	-fx-border-width: 1px;
+	-fx-border-radius: 10px;
+	-fx-background-radius: 50;
+}
+
+.left {
+	-fx-border-radius: 10 0 0 10;
+	-fx-border-width: 1px;
+	-fx-border-color: #666;
+	-fx-background-color: #fff;
+	-fx-background-radius: 10 0 0 10;
+}
+
+.right {
+	-fx-border-radius: 0 10 10 0;
+	-fx-border-width: 1px;
+	-fx-border-color: #666;
+	-fx-background-color: #ddd;
+	-fx-background-radius: 0 10 10 0;
+}
+
+.rectangle {
+	-fx-
+}

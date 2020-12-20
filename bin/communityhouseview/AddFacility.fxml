@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane layoutX="50.0" layoutY="39.0" prefHeight="90.0" prefWidth="500.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.3999755859375" minWidth="10.0" prefWidth="80.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.80001220703122" minWidth="10.0" prefWidth="144.00002441406247" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="55.20001220703125" minHeight="41.600006103515625" prefHeight="42.4000244140625" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="113.60000457763672" minHeight="41.399993896484375" prefHeight="45.20001220703125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="118.79998779296874" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Tên CSVC:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Chủng loại:" GridPane.columnIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Số lượng:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Mô tả:" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField maxWidth="125.0" prefHeight="26.0" prefWidth="125.0" GridPane.columnIndex="1" />
+            <TextField maxWidth="125.0" prefHeight="26.0" prefWidth="125.0" GridPane.columnIndex="3" />
+            <Spinner prefHeight="26.0" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <TextArea layoutX="158.0" layoutY="139.0" prefHeight="102.0" prefWidth="390.0" AnchorPane.rightAnchor="51.60000000000002" AnchorPane.topAnchor="139.0" />
+      <Button layoutX="425.0" layoutY="255.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="82.0" styleClass="left" text="Quay lại">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Button>
+      <Button layoutX="507.0" layoutY="255.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="82.0" styleClass="right" text="Tạo mới">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </Button>
+      <AnchorPane layoutX="158.0" layoutY="-77.0" prefHeight="30.0" prefWidth="600.0" style="-fx-background-color: #eee;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label minHeight="30.0" style="-fx-background-color: #eee;" text="Thêm mới cơ sở vật chất" textFill="#333333" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="7.0" right="7.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -14,10 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@style4.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@style4.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <JFXTabPane id="tabbar" layoutX="250.0" layoutY="89.0" prefHeight="600.0" prefWidth="1200.0" side="LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <JFXTabPane id="tabbar" layoutX="250.0" layoutY="89.0" prefHeight="600.0" prefWidth="1200.0" side="LEFT" stylesheets="@style4.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
                 <Tab>
                     <content>
@@ -45,7 +44,7 @@
                         </AnchorPane>
                     </content>
                     <graphic>
-                        <Label id="header" minHeight="100.0" minWidth="300.0" prefHeight="40.0" prefWidth="71.0" style="-fx-background-color: #39e600;" text="HOME" textFill="WHITE">
+                        <Label id="header" minHeight="100.0" minWidth="300.0" style="-fx-background-color: #39e600;" text="HOME" textFill="WHITE">
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="75" />
                             </graphic>
@@ -105,9 +104,9 @@
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="ENVELOPE_ALT" size="40" />
                             </graphic>
-                            <padding>
-                                <Insets left="30.0" />
-                            </padding>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
                         </Label>
                     </graphic>
                 </Tab>
@@ -139,7 +138,7 @@
                                 <Font size="30.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="40" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="40" text="" />
                             </graphic>
                             <padding>
                                 <Insets left="26.0" />

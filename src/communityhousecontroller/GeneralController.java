@@ -40,7 +40,7 @@ public class GeneralController implements Initializable {
 		   try {
 			    Stage genStage = (Stage) btn2.getScene().getWindow();
 			    genStage.close();
-			    Scene QLCSVCScene = new Scene(FXMLLoader.load(getClass().getResource("/communityhouseview/Application.fxml")));
+			    Scene QLCSVCScene = new Scene(FXMLLoader.load(getClass().getResource("/communityhouseview/RegisterPage2.fxml")));
 		        Stage stage = new Stage();
 		        stage.setScene(QLCSVCScene);
 		        stage.centerOnScreen();	

@@ -1,0 +1,36 @@
+.tab .label{
+	-fx-rotate: 90
+}
+
+.tab .label{
+	-fx-rotate: 90.0
+}
+.tab-selected-line {
+    -fx-pref-width: 100px
+}
+#tabbar {
+	-fx-tab-min-height: 300.0px;
+	-fx-tab-max-width: 100.0px
+}
+
+#header {
+	-fx-text-fill: #fff;
+	-fx-font-size: 50px;
+	-fx-font-weight: bold
+}
+
+.tab:hover {
+	-fx-cursor: hand
+}
+
+.tab-header-background {
+	-fx-background-color: #999999
+}
+
+.tab-pane *.tab-header-background {
+	-fx-background-color: #2a2c36
+}
+
+#tabbar .tab:selected .label{
+    -fx-text-fill: #3399ff
+}

@@ -2,6 +2,7 @@ package communityhouseservice.beanservice;
 
 import Bean.NhanKhauBean;
 import communityhousebean.ContractBean;
+import communityhousebean.EventBean;
 import javafx.util.Pair;
 import communityhousemodel.ContractModel;
 import communityhousemodel.FacilityModel;
@@ -25,12 +26,44 @@ public class ContractBeanService {
         try {
             List<ContractModel> contractModelList = contractService.getListContract();
             NhanKhauService nhanKhauService = new NhanKhauService();
+            EventBeanService eventBeanService = new EventBeanService();
             UserAccountService userAccountService = new UserAccountService();
             for (ContractModel c: contractModelList){
                 ContractBean contractBean = new ContractBean();
                 List<Pair<FacilityModel, Integer>> list = getListFacilityHire(c.getContractId());
                 UserAccountModel userAccountModel = userAccountService.getUserById(c.getUserId());
                 NhanKhauBean nhanKhauBean = nhanKhauService.getNhanKhauById(userAccountModel.getPersionId());
+                EventBean eventBean = eventBeanService.getEventBeanById(c.getEventId());
+                contractBean.setEventBean(eventBean);
+                contractBean.setContractModel(c);
+                contractBean.setFacilityModelList(list);
+                contractBean.setNhanKhauBean(nhanKhauBean);
+                contractBean.setUserAccountModel(userAccountModel);
+                contractBeans.add(contractBean);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return contractBeans;
+    }
+
+    public List<ContractBean> getContractBeanByUserId(int user_id){
+        ContractService contractService = new ContractService();
+        List<ContractBean> contractBeans = new ArrayList<>();
+        try {
+            List<ContractModel> contractModelList = contractService.getContractByUserId(user_id);
+            NhanKhauService nhanKhauService = new NhanKhauService();
+            EventBeanService eventBeanService = new EventBeanService();
+            UserAccountService userAccountService = new UserAccountService();
+            for (ContractModel c: contractModelList){
+                ContractBean contractBean = new ContractBean();
+                List<Pair<FacilityModel, Integer>> list = getListFacilityHire(c.getContractId());
+                UserAccountModel userAccountModel = userAccountService.getUserById(c.getUserId());
+                NhanKhauBean nhanKhauBean = nhanKhauService.getNhanKhauById(userAccountModel.getPersionId());
+                EventBean eventBean = eventBeanService.getEventBeanById(c.getEventId());
+                contractBean.setEventBean(eventBean);
                 contractBean.setContractModel(c);
                 contractBean.setFacilityModelList(list);
                 contractBean.setNhanKhauBean(nhanKhauBean);
@@ -67,5 +100,11 @@ public class ContractBeanService {
         st.close();
         connection.close();
         return list;
+    }
+
+    public static void main(String[] args) {
+        ContractBeanService contractBeanService = new ContractBeanService();
+        List<ContractBean> contractBeanList = contractBeanService.getContractBeanByUserId(6);
+        System.out.println(contractBeanList.get(0).getContractModel().getContractId());
     }
 }

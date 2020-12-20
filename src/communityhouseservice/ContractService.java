@@ -47,6 +47,27 @@ public class ContractService {
         return list;
     }
 
+    public List<ContractModel> getContractByUserId(int userId) throws SQLException, ClassNotFoundException {
+        Connection connection = MysqlConnection.getMysqlConnection();
+        String query = "SELECT * from contract where user_id = " + userId;
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        List<ContractModel> list = new ArrayList<>();
+        while(rs.next()){
+            ContractModel contractModel = new ContractModel();
+            contractModel.setContractId(rs.getInt("contract_id"));
+            contractModel.setUserId(rs.getInt("user_id"));
+            contractModel.setEventId(rs.getInt("event_id"));
+            contractModel.setCreateDate(rs.getTimestamp("create_date"));
+            contractModel.setCost(rs.getLong("cost"));
+            contractModel.setIsAccepted(rs.getInt("is_accepted"));
+            list.add(contractModel);
+        }
+        st.close();
+        connection.close();
+        return list;
+    }
+
     public ContractModel getContractById(int id) throws SQLException, ClassNotFoundException {
         Connection connection = MysqlConnection.getMysqlConnection();
         String query = "SELECT * from contract where contract_id = " + id;

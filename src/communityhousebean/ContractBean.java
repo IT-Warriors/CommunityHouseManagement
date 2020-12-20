@@ -12,7 +12,16 @@ public class ContractBean {
     private ContractModel contractModel;
     private UserAccountModel userAccountModel;
     private NhanKhauBean nhanKhauBean;
+    private EventBean eventBean;
     private List<Pair<FacilityModel, Integer>> facilityModelList;
+
+    public EventBean getEventBean() {
+        return eventBean;
+    }
+
+    public void setEventBean(EventBean eventBean) {
+        this.eventBean = eventBean;
+    }
 
     public NhanKhauBean getNhanKhauBean() {
         return nhanKhauBean;

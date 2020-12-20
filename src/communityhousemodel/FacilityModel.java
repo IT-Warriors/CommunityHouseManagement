@@ -10,18 +10,24 @@ public class FacilityModel {
     private long price;
     private String desciption;
     private Date lastUpdate;
+    private String facilityKind;
 
-    public FacilityModel(){}
-
-    public FacilityModel(String facilityName, int totalQuantity, long price, String desciption) {
-        this.facilityName = facilityName;
-        this.totalQuantity = totalQuantity;
-        this.available = totalQuantity;
-        this.price = price;
-        this.desciption = desciption;
+    public FacilityModel() {
     }
 
-    public FacilityModel(int facilityId, String facilityName, int totalQuantity, int available, long price, String desciption, Date lastUpdate) {
+    public FacilityModel(String facilityName, int totalQuantity, int available, long price, String desciption,
+                         Date lastUpdate, String facilityKind) {
+        this.facilityName = facilityName;
+        this.totalQuantity = totalQuantity;
+        this.available = available;
+        this.price = price;
+        this.desciption = desciption;
+        this.lastUpdate = lastUpdate;
+        this.facilityKind = facilityKind;
+    }
+
+    public FacilityModel(int facilityId, String facilityName, int totalQuantity, int available, long price,
+                         String desciption, Date lastUpdate, String facilityKind) {
         this.facilityId = facilityId;
         this.facilityName = facilityName;
         this.totalQuantity = totalQuantity;
@@ -29,6 +35,7 @@ public class FacilityModel {
         this.price = price;
         this.desciption = desciption;
         this.lastUpdate = lastUpdate;
+        this.facilityKind = facilityKind;
     }
 
     public int getFacilityId() {
@@ -85,5 +92,13 @@ public class FacilityModel {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public String getFacilityKind() {
+        return facilityKind;
+    }
+
+    public void setFacilityKind(String facilityKind) {
+        this.facilityKind = facilityKind;
     }
 }
