@@ -12,7 +12,13 @@ public class CreateGeneralScene extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Scene generalScene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/GeneralScene.fxml")));
+			Scene generalScene;
+			if(LoginController.currentUser.getType() == 1){
+				generalScene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/GeneralScene.fxml")));
+			} else {
+				generalScene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/RegisterPage2.fxml")));
+			}
+
 			//loginScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(generalScene);
 			genStage = primaryStage;

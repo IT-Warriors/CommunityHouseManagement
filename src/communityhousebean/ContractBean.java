@@ -1,9 +1,7 @@
 package communityhousebean;
 
 import Bean.NhanKhauBean;
-import javafx.util.Pair;
 import communityhousemodel.ContractModel;
-import communityhousemodel.FacilityModel;
 import communityhousemodel.UserAccountModel;
 
 import java.util.List;
@@ -13,7 +11,7 @@ public class ContractBean {
     private UserAccountModel userAccountModel;
     private NhanKhauBean nhanKhauBean;
     private EventBean eventBean;
-    private List<Pair<FacilityModel, Integer>> facilityModelList;
+    private List<HireBean> facilityModelList;
 
     public EventBean getEventBean() {
         return eventBean;
@@ -47,11 +45,11 @@ public class ContractBean {
         this.userAccountModel = userAccountModel;
     }
 
-    public List<Pair<FacilityModel, Integer>> getFacilityModelList() {
+    public List<HireBean> getFacilityModelList() {
         return facilityModelList;
     }
 
-    public void setFacilityModelList(List<Pair<FacilityModel, Integer>> facilityModelList) {
+    public void setFacilityModelList(List<HireBean> facilityModelList) {
         this.facilityModelList = facilityModelList;
     }
 }

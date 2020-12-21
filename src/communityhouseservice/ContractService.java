@@ -87,21 +87,40 @@ public class ContractService {
         return contractModel;
     }
 
+    public ContractModel getContractByEventId(int id) throws SQLException, ClassNotFoundException {
+        Connection connection = MysqlConnection.getMysqlConnection();
+        String query = "SELECT * from contract where event_id = " + id;
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ContractModel contractModel = new ContractModel();
+        while(rs.next()){
+            contractModel.setContractId(rs.getInt("contract_id"));
+            contractModel.setUserId(rs.getInt("user_id"));
+            contractModel.setEventId(rs.getInt("event_id"));
+            contractModel.setCreateDate(rs.getTimestamp("create_date"));
+            contractModel.setCost(rs.getLong("cost"));
+            contractModel.setIsAccepted(rs.getInt("is_accepted"));
+        }
+        st.close();
+        connection.close();
+        return contractModel;
+    }
+
     public boolean updateContract(ContractModel newContract) throws SQLException, ClassNotFoundException {
         Connection connection = MysqlConnection.getMysqlConnection();
-        String query = "UPDATE contract set user_id = ?, event_id = ?, create_date = ?, cost = ?, is_accepted = ? where contract_id = ?";
+        String query = "UPDATE contract set create_date = ?, cost = ?, is_accepted = ? where contract_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        System.out.println(newContract.getContractId());
         try{
-            preparedStatement.setInt(1, newContract.getUserId());
-            preparedStatement.setInt(2, newContract.getEventId());
-            preparedStatement.setTimestamp(3, (Timestamp) newContract.getCreateDate());
-            preparedStatement.setLong(4, newContract.getCost());
-            preparedStatement.setInt(5, newContract.getIsAccepted());
-            preparedStatement.setInt(6, newContract.getContractId());
+            preparedStatement.setTimestamp(1, new Timestamp(newContract.getCreateDate().getTime()));
+            preparedStatement.setLong(2, newContract.getCost());
+            preparedStatement.setInt(3, newContract.getIsAccepted());
+            preparedStatement.setInt(4, newContract.getContractId());
 
             preparedStatement.executeUpdate();
             return true;
         } catch (Exception ex){
+            ex.printStackTrace();
             return false;
         } finally {
             preparedStatement.close();

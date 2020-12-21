@@ -26,6 +26,16 @@ public class FacilityModel {
         this.facilityKind = facilityKind;
     }
 
+    public FacilityModel(String facilityName, int totalQuantity, int available, long price, String desciption,
+                         String facilityKind) {
+        this.facilityName = facilityName;
+        this.totalQuantity = totalQuantity;
+        this.available = available;
+        this.price = price;
+        this.desciption = desciption;
+        this.facilityKind = facilityKind;
+    }
+
     public FacilityModel(int facilityId, String facilityName, int totalQuantity, int available, long price,
                          String desciption, Date lastUpdate, String facilityKind) {
         this.facilityId = facilityId;
@@ -70,7 +80,7 @@ public class FacilityModel {
         this.available = available;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 

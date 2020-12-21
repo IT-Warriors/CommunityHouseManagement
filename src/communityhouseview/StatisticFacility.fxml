@@ -15,11 +15,13 @@
       <TableView layoutX="55.0" layoutY="84.0" prefHeight="436.0" prefWidth="650.0">
          <columns>
             <TableColumn prefWidth="74.39996337890625" text="Mã CSVC" />
-            <TableColumn prefWidth="124.79998779296875" text="Tên CSVC" />
-            <TableColumn prefWidth="85.5999755859375" text="Chủng loại" />
-            <TableColumn prefWidth="192.0" text="Mô tả" />
-            <TableColumn prefWidth="91.199951171875" text="Số lượng" />
+            <TableColumn prefWidth="108.79998779296875" text="Tên CSVC" />
+            <TableColumn prefWidth="101.60003662109375" text="Chủng loại" />
+            <TableColumn prefWidth="152.79998779296875" text="Mô tả" />
+            <TableColumn prefWidth="130.40005493164062" text="Số lượng" />
             <TableColumn prefWidth="79.2000732421875" text="Cho thuê" />
+            <TableColumn prefWidth="75.0" text="Giá thuê" />
+            <TableColumn prefWidth="75.0" text="Last Updated" />
          </columns>
       </TableView>
       <Text layoutX="55.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Chủng loại:">

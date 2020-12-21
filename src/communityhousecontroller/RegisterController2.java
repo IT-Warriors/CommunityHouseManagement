@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,16 +16,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class RegisterController implements Initializable {
+public class RegisterController2 implements Initializable {
     @FXML
     private TableView<ContractBean> contractTableView;
     @FXML
@@ -37,6 +41,10 @@ public class RegisterController implements Initializable {
     private TableColumn<ContractBean, String> toDateCol;
     @FXML
     private TableColumn<ContractBean, String> stateCol;
+    @FXML
+    private Button deleteBtn;
+    @FXML
+    private Button updateBtn;
 
     private ContractBeanService contractBeanService = new ContractBeanService();
 
@@ -46,12 +54,22 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        deleteBtn.setDisable(true);
+        updateBtn.setDisable(true);
+        contractTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(contractTableView.getSelectionModel().getSelectedItem() != null && contractTableView.getSelectionModel().getSelectedItem().getContractModel().getIsAccepted() == 0){
+                    deleteBtn.setDisable(false);
+                    updateBtn.setDisable(false);
+                }
+            }
+        });
         initRegisterForm();
     }
 
     public void initRegisterForm(){
-        contractBeanList = contractBeanService.getContractBeanByUserId(6);
-        System.out.println(contractBeanList);
+        contractBeanList = contractBeanService.getContractBeanByUserId(LoginController.currentUser.getUserId());
 
         contractList = FXCollections.observableArrayList(contractBeanList);
         contractIdCol.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getContractModel().getContractId())));
@@ -64,6 +82,7 @@ public class RegisterController implements Initializable {
     }
 
     public void updateRegister(ActionEvent e){
+
         ContractBean contractBean = contractTableView.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader();
         Stage stage = new Stage();
@@ -75,11 +94,30 @@ public class RegisterController implements Initializable {
             ioException.printStackTrace();
         }
 
-        UserContractDetailController tmp = new UserContractDetailController();
+
+        UserContractDetailController tmp = loader.getController();
         tmp.initData(contractBean);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
+
+        stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
+    }
+    private void closeWindowEvent(WindowEvent event) {
+        System.out.println("Window close request ...");
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.getButtonTypes().remove(ButtonType.OK);
+        alert.getButtonTypes().add(ButtonType.CANCEL);
+        alert.getButtonTypes().add(ButtonType.YES);
+        alert.setTitle("Quit application");
+        alert.setContentText(String.format("Close without saving?"));
+        Optional<ButtonType> res = alert.showAndWait();
+
+        if(res.isPresent()) {
+            if(res.get().equals(ButtonType.CANCEL))
+                event.consume();
+        }
     }
 
     public void deleteRegister(ActionEvent e){
@@ -88,36 +126,30 @@ public class RegisterController implements Initializable {
         alert.showAndWait();
         if (alert.getResult() == ButtonType.YES) {
             ContractBean contractSelect = contractTableView.getSelectionModel().getSelectedItem();
-            ContractService contractService = new ContractService();
-            EventBeanService eventBeanService = new EventBeanService();
-            try {
-                contractService.deleteContract(contractSelect.getContractModel().getContractId());
-                eventBeanService.deleteEvent(contractSelect.getEventBean().getEvent().getEventId());
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            } catch (ClassNotFoundException classNotFoundException) {
-                classNotFoundException.printStackTrace();
-            }
+            contractBeanService.deleteContract(contractSelect);
             contractList.remove(contractSelect);
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Xóa thành công!");
             alert.showAndWait();
         }
     }
 
     public void insertRegister(ActionEvent e){
-        ContractBean contractBean = contractTableView.getSelectionModel().getSelectedItem();
-        FXMLLoader loader = new FXMLLoader();
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        loader.setLocation(getClass().getResource("/communityhouseview/RegisterPage1.fxml"));
-        Parent parent = null;
-        try {
-            parent = loader.load();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.show();
+        UserController userController = new UserController();
+        userController.btnRegister(e);
+    }
+
+    public void RegisterBtn(ActionEvent e){
+        UserController userController = new UserController();
+        userController.btnRegister(e);
+    }
+
+    public void MyRegisterBtn(ActionEvent e){
+        UserController userController = new UserController();
+        userController.btnMyRegister(e);
+    }
+
+    public void MyAccountBtn(ActionEvent e){
+        UserController userController = new UserController();
+        userController.btnMyAccount(e);
     }
 }

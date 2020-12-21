@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane layoutX="100.0" layoutY="57.0" prefHeight="90.0" prefWidth="592.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.9999755859375" minWidth="109.60001220703126" prefWidth="122.60001220703126" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.40002441406247" minWidth="175.0" prefWidth="197.60001220703128" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.60000000000002" minWidth="10.0" prefWidth="128.00002441406252" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.00003662109373" minWidth="10.0" prefWidth="143.99997558593748" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="55.20001220703125" minHeight="41.600006103515625" prefHeight="42.4000244140625" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="113.60000457763672" minHeight="41.399993896484375" prefHeight="45.20001220703125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="118.79998779296874" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Tên sự kiện:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label prefHeight="27.0" prefWidth="146.0" text="Địa điểm:" GridPane.columnIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Ngày bắt đầu:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Nội dung:" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField maxWidth="140.0" prefHeight="26.0" prefWidth="140.0" GridPane.columnIndex="1" />
+            <TextField maxWidth="140.0" prefHeight="26.0" prefWidth="140.0" GridPane.columnIndex="3" />
+            <DatePicker prefHeight="26.0" prefWidth="140.0" styleClass="addEventDate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Ngày kết thúc:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <DatePicker maxWidth="140.0" prefHeight="26.0" prefWidth="140.0" styleClass="addEventDate" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <TextArea layoutX="100.0" layoutY="183.0" prefHeight="196.0" prefWidth="592.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="183.0" />
+      <Button layoutX="578.0" layoutY="411.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="82.0" styleClass="left" text="Quay lại">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Button>
+      <Button layoutX="660.0" layoutY="411.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="82.0" styleClass="right" text="Tạo mới">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </Button>
+      <AnchorPane layoutX="158.0" layoutY="-77.0" prefHeight="35.0" prefWidth="800.0" style="-fx-background-color: #eee;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label minHeight="35.0" style="-fx-background-color: #eee;" text="Thêm mới sự kiện" textFill="#333333" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="7.0" right="7.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

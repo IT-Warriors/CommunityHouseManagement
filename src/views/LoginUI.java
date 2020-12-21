@@ -1,7 +1,7 @@
 package views;
 
-import controllers.LoginController;
 import communityhousecontroller.CreateGeneralScene;
+import communityhousecontroller.LoginController;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

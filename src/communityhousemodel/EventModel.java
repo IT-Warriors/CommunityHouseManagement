@@ -10,7 +10,8 @@ public class EventModel {
     private Date fromDate;
     private Date toDate;
 
-    public EventModel(){}
+    public EventModel() {
+    }
 
     public EventModel(String eventName, int hallId, String content, Date fromDate, Date toDate) {
         this.eventName = eventName;
@@ -77,5 +78,3 @@ public class EventModel {
         this.toDate = toDate;
     }
 }
-
-
