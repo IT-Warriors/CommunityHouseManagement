@@ -104,7 +104,7 @@
         </TableView>
         <Button fx:id="deleteBtn" layoutX="936.0" layoutY="549.0" mnemonicParsing="false" onAction="#deleteHire" text="Xóa" />
         <CheckBox fx:id="acceptCheckBox" layoutX="399.0" layoutY="584.0" mnemonicParsing="false" text="Tôi đồng ý và cam kết tuân thủ mọi quy định của nhà văn hóa" />
-        <Button layoutX="937.0" layoutY="593.0" mnemonicParsing="false" onAction="#sendRegister" text="Gửi" />
+        <Button layoutX="973.0" layoutY="593.0" mnemonicParsing="false" onAction="#showContract" text="Xem hợp đồng" />
         <Button layoutX="872.0" layoutY="593.0" mnemonicParsing="false" onAction="#resetButton" text="Đặt lại" />
       <Label layoutX="324.0" layoutY="252.0" text="Tên sự kiện" />
       <Label layoutX="711.0" layoutY="252.0" text="Nội dung" />

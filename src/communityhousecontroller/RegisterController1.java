@@ -17,11 +17,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -69,6 +76,8 @@ public class RegisterController1 implements Initializable {
     private TextField editContent;
     private ObservableList<HireBean> hireBeanObservableList;
 
+    static Stage stage;
+
     UserController userController = new UserController();
 
     ContractBeanService contractBeanService = new ContractBeanService();
@@ -104,65 +113,14 @@ public class RegisterController1 implements Initializable {
         initTableHire();
     }
 
-    public void sendRegister(){
-        ContractBean contract = new ContractBean();
-        LocalDate fromDate = editFromDate.getValue();
-        LocalDate toDate = editToDate.getValue();
-        String phoneNum = editPhone.getText();
-        String eventName = editEventName.getText();
-        String content = editContent.getText();
-
-        if(!acceptCheckBox.isSelected() || phoneNum == null || editHall.getValue() == null || fromDate == null || toDate == null || eventName == null || content == null){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chưa điền đầy đủ thông tin", ButtonType.OK);
-            alert.showAndWait();
-        } else{
-            Date from = java.sql.Date.valueOf(fromDate);
-            Date to = java.sql.Date.valueOf(toDate);
-            HallModel hallModel = listHall.get(editHall.getSelectionModel().getSelectedIndex());
-            if(checkHallFree(hallModel, from) && checkHallFree(hallModel, to)){
-                UserAccountModel userAccount = user.getAccountModel();
-                userAccount.setPhoneNumber(phoneNum);
-                contract.setUserAccountModel(userAccount);
-                contract.setNhanKhauBean(user.getNhanKhauBean());
-
-                EventBean eventBean = new EventBean();
-                eventBean.setHall(hallModel);
-
-                EventModel event = new EventModel();
-                event.setEventName(eventName);
-                event.setContent(content);
-                event.setHallId(hallModel.getHallId());
-                event.setFromDate(from);
-                event.setToDate(to);
-                eventBean.setEvent(event);
-
-                contract.setEventBean(eventBean);
-
-                contract.setFacilityModelList(hireBeanObservableList);
-
-                ContractModel contractModel = new ContractModel();
-                contractModel.setCreateDate(new Date());
-                contractModel.setCost(caculateCost());
-                contractModel.setUserId(userAccount.getUserId());
-
-                contract.setContractModel(contractModel);
-
-                contractBeanService.insertContract(contract);
-                resetButton();
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Gửi thành công!", ButtonType.OK);
-                alert.showAndWait();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Gửi thất bại do hội trường bận!", ButtonType.OK);
-                alert.showAndWait();
-            }
-        }
-    }
-
     public long caculateCost(){
-        HallModel hallModel = listHall.get(editHall.getSelectionModel().getSelectedIndex());
+        HallModel hallModel = new HallModel();
         long price = 0;
         for(HireBean hire: hireBeanObservableList){
             price += hire.getFacility().getPrice() * hire.getHiredQuantity();
+        }
+        if(editHall.getSelectionModel().getSelectedItem() != null){
+            hallModel = listHall.get(editHall.getSelectionModel().getSelectedIndex());
         }
         price += hallModel.getPrice();
         totalFee.setText(price + "");
@@ -265,6 +223,70 @@ public class RegisterController1 implements Initializable {
                 }
             }
         });
+    }
+
+    public void showContract(ActionEvent e){
+        ContractBean contract = new ContractBean();
+        LocalDate fromDate = editFromDate.getValue();
+        LocalDate toDate = editToDate.getValue();
+        String phoneNum = editPhone.getText();
+        String eventName = editEventName.getText();
+        String content = editContent.getText();
+
+        if(!acceptCheckBox.isSelected() || phoneNum == null || editHall.getValue() == null || fromDate == null || toDate == null || eventName == null || content == null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chưa điền đầy đủ thông tin", ButtonType.OK);
+            alert.showAndWait();
+        } else{
+            Date from = java.sql.Date.valueOf(fromDate);
+            Date to = java.sql.Date.valueOf(toDate);
+            HallModel hallModel = listHall.get(editHall.getSelectionModel().getSelectedIndex());
+            if(checkHallFree(hallModel, from) && checkHallFree(hallModel, to)){
+                UserAccountModel userAccount = user.getAccountModel();
+                userAccount.setPhoneNumber(phoneNum);
+                contract.setUserAccountModel(userAccount);
+                contract.setNhanKhauBean(user.getNhanKhauBean());
+
+                EventBean eventBean = new EventBean();
+                eventBean.setHall(hallModel);
+
+                EventModel event = new EventModel();
+                event.setEventName(eventName);
+                event.setContent(content);
+                event.setHallId(hallModel.getHallId());
+                event.setFromDate(from);
+                event.setToDate(to);
+                eventBean.setEvent(event);
+
+                contract.setEventBean(eventBean);
+
+                contract.setFacilityModelList(hireBeanObservableList);
+
+                ContractModel contractModel = new ContractModel();
+                contractModel.setCreateDate(new Date());
+                contractModel.setCost(caculateCost());
+                contractModel.setUserId(userAccount.getUserId());
+
+                contract.setContractModel(contractModel);
+
+                FXMLLoader loader = new FXMLLoader();
+                stage = new Stage();
+                loader.setLocation(getClass().getResource("/communityhouseview/ContractForm.fxml"));
+                Parent parent = null;
+                try {
+                    parent = loader.load();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                ContractFormController tmp = loader.getController();
+                tmp.initData(contract);
+                Scene scene = new Scene(parent);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Phòng không còn trống vào ngày bạn chọn!", ButtonType.OK);
+                alert.showAndWait();
+            }
+        }
     }
 
     public void setSpinnerValue(int maxValue){

@@ -314,18 +314,19 @@ public class FacilityService {
      * @throws ClassNotFoundException
      */
     public boolean deleteFacility(int id) throws SQLException, ClassNotFoundException {
+
         java.sql.Connection connection = MysqlConnection.getMysqlConnection();
-        String query = "delete from facility where facility_id = " + id;
+        String query = "delete from hire where facility_id = " + id;
         Statement st = connection.createStatement();
         try {
-            if (st.executeUpdate(query) > 0) {
-                return true;
-            }
-            ;
-            return false;
+            st.executeUpdate(query);
+            query = "delete from facility where facility_id = " + id;
+            st.executeUpdate(query);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+
     }
 }

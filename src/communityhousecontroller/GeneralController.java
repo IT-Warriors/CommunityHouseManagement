@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+import com.jfoenix.controls.JFXButton;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +16,8 @@ import javafx.stage.Stage;
 import views.MainFrame;
 
 public class GeneralController implements Initializable {
-	   @FXML private Button btn1;
-	   @FXML private Button btn2;
+	   @FXML private JFXButton btn1;
+	   @FXML private JFXButton btn2;
 	   
 	   @Override
 	   public void initialize(URL location, ResourceBundle resources) {	      
@@ -38,9 +39,7 @@ public class GeneralController implements Initializable {
 	   
 	   public void onBtn2(ActionEvent event) {
 		   try {
-			    Stage genStage = (Stage) btn2.getScene().getWindow();
-			    genStage.close();
-			    Scene QLCSVCScene = new Scene(FXMLLoader.load(getClass().getResource("/communityhouseview/RegisterPage2.fxml")));
+			    Scene QLCSVCScene = new Scene(FXMLLoader.load(getClass().getResource("/communityhouseview/HomePage.fxml")));
 		        Stage stage = new Stage();
 		        stage.setScene(QLCSVCScene);
 		        stage.centerOnScreen();	

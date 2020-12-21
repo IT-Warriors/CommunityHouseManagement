@@ -14,7 +14,7 @@ public class CreateGeneralScene extends Application{
 		try {
 			Scene generalScene;
 			if(LoginController.currentUser.getType() == 1){
-				generalScene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/GeneralScene.fxml")));
+				generalScene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/WelcomePage.fxml")));
 			} else {
 				generalScene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/RegisterPage2.fxml")));
 			}

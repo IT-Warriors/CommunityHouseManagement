@@ -144,6 +144,35 @@ public class ContractBeanService {
 
     }
 
+    public List<ContractBean> searchContract(int contractId, String eventName, String fromDate){
+        ContractService contractService = new ContractService();
+        List<ContractBean> contractBeans = new ArrayList<>();
+        try {
+            List<ContractModel> contractModelList = contractService.getListContract();
+            NhanKhauService nhanKhauService = new NhanKhauService();
+            EventBeanService eventBeanService = new EventBeanService();
+            UserAccountService userAccountService = new UserAccountService();
+            for (ContractModel c: contractModelList){
+                ContractBean contractBean = new ContractBean();
+                List<HireBean> list = getListFacilityHire(c.getContractId());
+                UserAccountModel userAccountModel = userAccountService.getUserById(c.getUserId());
+                NhanKhauBean nhanKhauBean = nhanKhauService.getNhanKhauById(userAccountModel.getPersionId());
+                EventBean eventBean = eventBeanService.getEventBeanById(c.getEventId());
+                contractBean.setEventBean(eventBean);
+                contractBean.setContractModel(c);
+                contractBean.setFacilityModelList(list);
+                contractBean.setNhanKhauBean(nhanKhauBean);
+                contractBean.setUserAccountModel(userAccountModel);
+                contractBeans.add(contractBean);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return contractBeans;
+    }
+
     public List<HireBean> getListFacilityHire(int contractId) throws SQLException, ClassNotFoundException {
         Connection connection = MysqlConnection.getMysqlConnection();
         String query = "SELECT * from hire, facility where hire.facility_id = facility.facility_id and contract_id = " + contractId;

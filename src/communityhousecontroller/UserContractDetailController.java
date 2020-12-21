@@ -208,36 +208,6 @@ public class UserContractDetailController implements Initializable {
         initData(contract);
     }
 
-    public void saveChange(){
-        HallModel hallModel = listHall.get(editHall.getSelectionModel().getSelectedIndex());
-        LocalDate fromDate = editFromDate.getValue();
-        LocalDate toDate = editToDate.getValue();
-        String phoneNum = editPhone.getText();
-        String eventName = editEventName.getText();
-        String content = editContent.getText();
-        Date from = java.sql.Date.valueOf(fromDate);
-        Date to = java.sql.Date.valueOf(toDate);
-        int eventId = contract.getEventBean().getEvent().getEventId();
-        if(!acceptCheckBox.isSelected() || phoneNum == null || hallModel == null || fromDate == null || toDate == null || eventName == null || content == null){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chưa điền đầy đủ thông tin", ButtonType.OK);
-            alert.showAndWait();
-        } else if(checkHallFree(eventId, hallModel, from) && checkHallFree(eventId, hallModel, to)){
-            contract.getEventBean().getEvent().setEventName(eventName);
-            contract.getEventBean().getEvent().setContent(content);
-            contract.getUserAccountModel().setPhoneNumber(phoneNum);
-            contract.getEventBean().setHall(hallModel);
-            contract.getEventBean().getEvent().setHallId(hallModel.getHallId());
-            contract.getEventBean().getEvent().setFromDate(java.sql.Date.valueOf(fromDate));
-            contract.getEventBean().getEvent().setToDate(java.sql.Date.valueOf(toDate));
-            contract.setFacilityModelList(hireBeanObservableList);
-            contract.getContractModel().setCost(caculateCost(contract));
-            contract.getContractModel().setCreateDate(new Date());
-            contractBeanService.updateContract(contract);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Update Successful!", ButtonType.OK);
-            alert.showAndWait();
-        }
-    }
-
     public long caculateCost(ContractBean contractBean){
         List<HireBean> list = contractBean.getFacilityModelList();
         long price = 0;

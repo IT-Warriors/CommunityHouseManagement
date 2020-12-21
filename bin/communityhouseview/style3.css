@@ -34,6 +34,14 @@
     -fx-font: 15px "Arial";
 }
 
+.addEventDate .text-field {
+    -fx-font: 14px "Arial";
+}
+
+.addEventDate {
+    -fx-font: 14px "Arial";
+}
+
 .dottedline {
   	-fx-stroke-dash-array: 12;
 }
@@ -54,7 +62,9 @@
     -fx-background-color: transparent; 
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+    -fx-min-height: 200px; 
 }
 
 .table-view .table-column{
@@ -110,7 +120,7 @@
 	-fx-border-radius: 10 0 0 10;
 	-fx-border-width: 1px;
 	-fx-border-color: #666;
-	-fx-background-color: #fff;
+	-fx-background-color: #f7f7f7;
 	-fx-background-radius: 10 0 0 10;
 }
 
@@ -122,5 +132,15 @@
 	-fx-background-radius: 0 10 10 0;
 }
 
-.rectangle {
+.frame {
+	-fx-border-radius: 1px;
+	-fx-border-color: #000;
+}
+
+#contractForm1 {
+	-fx-background-image: url("/image/contractform1.PNG");
+}
+
+#contractForm2 {
+	-fx-background-image: url("/image/contractform2.PNG");
 }

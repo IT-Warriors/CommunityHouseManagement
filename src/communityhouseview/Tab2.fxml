@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1100.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1100.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="communityhousecontroller.Tab2Controller">
    <children>
       <AnchorPane prefHeight="645.0" prefWidth="250.0" style="-fx-background-color: #999999;">
          <children>
-            <JFXButton layoutX="30.0" layoutY="149.0" minHeight="60.0" minWidth="220.0" styleClass="tab" text=" Đơn đăng kí" textFill="WHITE">
+            <JFXButton layoutX="30.0" layoutY="149.0" minHeight="60.0" minWidth="220.0" onAction="#onBtn1" styleClass="tab" text=" Đơn đăng kí" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -26,7 +26,7 @@
                   <Insets left="-32.0" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="20.0" layoutY="23.0" minHeight="100.0" minWidth="250.0" styleClass="header" text="Trang chủ" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <JFXButton layoutX="20.0" layoutY="23.0" minHeight="100.0" minWidth="250.0" onAction="#onHomeBtn" styleClass="header" text="Trang chủ" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="30.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets left="-15.0" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="30.0" layoutY="317.0" minHeight="60.0" minWidth="220.0" styleClass="tab" text=" Quản lí Sự kiện" textFill="WHITE">
+            <JFXButton layoutX="30.0" layoutY="317.0" minHeight="60.0" minWidth="220.0" onAction="#onBtn3" styleClass="tab" text=" Quản lí Sự kiện" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Insets left="-4.6" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="30.0" layoutY="234.0" minHeight="60.0" minWidth="220.0" styleClass="tab" text="Quản lí CSVC" textFill="WHITE">
+            <JFXButton layoutX="30.0" layoutY="234.0" minHeight="60.0" minWidth="220.0" onAction="#onBtn2" styleClass="tab" text="Quản lí CSVC" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -61,22 +61,17 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <Label layoutX="993.0" layoutY="31.0" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="27.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TableView layoutX="309.0" layoutY="146.0" prefHeight="470.0" prefWidth="650.0" AnchorPane.topAnchor="146.0">
+      <TableView fx:id="facilityTable" layoutX="309.0" layoutY="146.0" prefHeight="470.0" prefWidth="650.0" AnchorPane.topAnchor="146.0">
         <columns>
-            <TableColumn prefWidth="74.39996337890625" text="Mã CSVC" />
-          <TableColumn prefWidth="124.79998779296875" text="Tên CSVC" />
-          <TableColumn prefWidth="85.5999755859375" text="Chủng loại" />
-            <TableColumn prefWidth="192.0" text="Mô tả" />
-            <TableColumn prefWidth="91.199951171875" text="Số lượng" />
-            <TableColumn prefWidth="79.2000732421875" text="Cho thuê" />
+            <TableColumn fx:id="c1" prefWidth="74.39996337890625" text="Mã CSVC" />
+          <TableColumn fx:id="c2" prefWidth="124.79998779296875" text="Tên CSVC" />
+          <TableColumn fx:id="c3" prefWidth="85.5999755859375" text="Chủng loại" />
+            <TableColumn fx:id="c4" prefWidth="192.0" text="Mô tả" />
+            <TableColumn fx:id="c5" prefWidth="91.199951171875" text="Số lượng" />
+            <TableColumn fx:id="c6" prefWidth="79.2000732421875" text="Cho thuê" />
         </columns>
       </TableView>
-      <JFXButton layoutX="980.0" layoutY="161.0" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text=" Thêm" AnchorPane.topAnchor="150.0">
+      <JFXButton fx:id="addBtn" layoutX="980.0" layoutY="161.0" onAction="#onAddBtn" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text=" Thêm" AnchorPane.topAnchor="150.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -84,7 +79,7 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <JFXButton layoutX="979.0" layoutY="239.0" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Xóa" AnchorPane.topAnchor="239.0">
+      <JFXButton fx:id="delBtn" layoutX="979.0" layoutY="239.0" onAction="#onDelBtn" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Xóa" AnchorPane.topAnchor="239.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -92,7 +87,7 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <JFXButton layoutX="979.0" layoutY="331.0" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Sửa">
+      <JFXButton fx:id="changeBtn" layoutX="979.0" layoutY="331.0" onAction="#onChangeBtn" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Sửa">
          <font>
             <Font size="20.0" />
          </font>
@@ -100,7 +95,7 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <JFXButton layoutX="979.0" layoutY="424.0" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Thống kê">
+      <JFXButton fx:id="statisticBtn" layoutX="979.0" layoutY="424.0" onAction="#onStatisticBtn" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Thống kê">
          <font>
             <Font size="20.0" />
          </font>
@@ -108,43 +103,47 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <TextField layoutX="308.0" layoutY="45.0" prefHeight="30.0" prefWidth="150.0" promptText="Mã CSVC" styleClass="searchField" AnchorPane.topAnchor="45.0">
+      <TextField fx:id="search1" layoutX="308.0" layoutY="45.0" onAction="#onSearchBtn" prefHeight="30.0" prefWidth="150.0" promptText="Mã CSVC" styleClass="searchField" AnchorPane.topAnchor="45.0">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField layoutX="508.0" layoutY="61.0" prefHeight="30.0" prefWidth="150.0" promptText="Tên CSVC" styleClass="searchField" AnchorPane.topAnchor="45.0">
+      <TextField fx:id="search2" layoutX="488.0" layoutY="45.0" onAction="#onSearchBtn" prefHeight="30.0" prefWidth="150.0" promptText="Tên CSVC" styleClass="searchField" AnchorPane.topAnchor="45.0">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField layoutX="710.0" layoutY="61.0" prefHeight="30.0" prefWidth="150.0" promptText="Loại CSVC" styleClass="searchField" AnchorPane.topAnchor="45.0">
+      <TextField fx:id="search3" layoutX="671.0" layoutY="45.0" onAction="#onSearchBtn" prefHeight="30.0" prefWidth="150.0" promptText="Loại CSVC" styleClass="searchField" AnchorPane.topAnchor="45.0">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <JFXButton layoutX="877.0" layoutY="44.0" prefHeight="38.0" prefWidth="38.0" styleClass="searchIcon" text=" ">
-         <graphic>
-            <FontAwesomeIconView fill="#666666" glyphName="SEARCH" size="28" stroke="#66666680" styleClass="searchIcon2" />
-         </graphic>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="-2.0" top="3.0" />
-         </padding>
-      </JFXButton>
+      <JFXButton fx:id="searchBtn" layoutX="852.0" layoutY="44.0" onAction="#onSearchBtn" prefHeight="38.0" prefWidth="50.0" styleClass="searchIcon" text="Tìm" />
       <Label layoutX="866.0" layoutY="4.0" text="Welcome Back, username" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <JFXRadioButton layoutX="309.0" layoutY="98.0" text="Đang cho thuê" textFill="#666666">
+      <JFXRadioButton fx:id="radio1" layoutX="309.0" layoutY="98.0" text="Tất cả" textFill="#666666">
          <font>
             <Font size="20.0" />
          </font>
       </JFXRadioButton>
-      <JFXRadioButton layoutX="509.0" layoutY="98.0" text="Đã hết" textFill="#666666">
+      <JFXRadioButton fx:id="radio3" layoutX="665.0" layoutY="98.0" text="Đã hết" textFill="#666666">
          <font>
             <Font size="20.0" />
          </font>
       </JFXRadioButton>
+      <Label fx:id="logoutBtn" layoutX="993.0" layoutY="31.0" onDragDetected="#onLogoutLabel" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="27.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <JFXRadioButton fx:id="radio2" layoutX="454.0" layoutY="98.0" text="Đang cho thuê" textFill="#666666">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXButton fx:id="resetBtn" layoutX="910.0" layoutY="44.0" onAction="#onResetBtn" prefHeight="38.0" prefWidth="49.0" styleClass="searchIcon" text="Reset" textAlignment="CENTER" />
    </children>
 </AnchorPane>
