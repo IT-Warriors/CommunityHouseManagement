@@ -194,4 +194,27 @@ public class EventService {
 			return false;
 		}
 	}
+
+	public List<EventModel> getLastedEvent() throws SQLException, ClassNotFoundException {
+		java.sql.Connection connection = MysqlConnection.getMysqlConnection();
+		String query = "SELECT * from event where from_date >= NOW() order by from_date limit 2";
+		Statement st = connection.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		List<EventModel> list = new ArrayList<>();
+
+		while (rs.next()) {
+			EventModel event = new EventModel();
+			event.setEventId(rs.getInt("event_id"));
+			event.setEventName(rs.getString("event_name"));
+			event.setHallId(rs.getInt("hall_id"));
+			event.setContent(rs.getString("content"));
+			event.setFromDate(rs.getDate("from_date"));
+			event.setToDate(rs.getDate("to_date"));
+
+			list.add(event);
+		}
+		st.close();
+		connection.close();
+		return list;
+	}
 }

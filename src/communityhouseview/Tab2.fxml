@@ -87,7 +87,7 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <JFXButton fx:id="changeBtn" layoutX="979.0" layoutY="331.0" onAction="#onChangeBtn" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Sửa">
+      <JFXButton fx:id="updateBtn" layoutX="979.0" layoutY="331.0" onAction="#onUpdateBtn" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Sửa">
          <font>
             <Font size="20.0" />
          </font>
@@ -119,7 +119,7 @@
          </font>
       </TextField>
       <JFXButton fx:id="searchBtn" layoutX="852.0" layoutY="44.0" onAction="#onSearchBtn" prefHeight="38.0" prefWidth="50.0" styleClass="searchIcon" text="Tìm" />
-      <Label layoutX="866.0" layoutY="4.0" text="Welcome Back, username" AnchorPane.rightAnchor="20.0">
+      <Label fx:id="welcome" layoutX="866.0" layoutY="4.0" text="Welcome Back, username" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -134,7 +134,7 @@
             <Font size="20.0" />
          </font>
       </JFXRadioButton>
-      <Label fx:id="logoutBtn" layoutX="993.0" layoutY="31.0" onDragDetected="#onLogoutLabel" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="27.0">
+      <Label fx:id="logoutBtn" layoutX="993.0" layoutY="31.0" onMouseClicked="#logOut" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="27.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -144,6 +144,6 @@
             <Font size="20.0" />
          </font>
       </JFXRadioButton>
-      <JFXButton fx:id="resetBtn" layoutX="910.0" layoutY="44.0" onAction="#onResetBtn" prefHeight="38.0" prefWidth="49.0" styleClass="searchIcon" text="Reset" textAlignment="CENTER" />
+      <JFXButton fx:id="resetBtn" layoutX="910.0" layoutY="44.0" onAction="#onResetBtn" prefHeight="38.0" prefWidth="62.0" styleClass="searchIcon" text="Reset" textAlignment="CENTER" />
    </children>
 </AnchorPane>

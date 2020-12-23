@@ -4,6 +4,7 @@ import communityhousebean.ContractBean;
 import communityhouseservice.ContractService;
 import communityhouseservice.beanservice.ContractBeanService;
 import communityhouseservice.beanservice.EventBeanService;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,6 +46,9 @@ public class RegisterController2 implements Initializable {
     private Button deleteBtn;
     @FXML
     private Button updateBtn;
+    @FXML private Label welcome;
+
+    public static Stage currStage;
 
     private ContractBeanService contractBeanService = new ContractBeanService();
 
@@ -54,6 +58,7 @@ public class RegisterController2 implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        welcome.setText("Welcome back, " + LoginController.currentUser.getUsername());
         deleteBtn.setDisable(true);
         updateBtn.setDisable(true);
         contractTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -62,10 +67,24 @@ public class RegisterController2 implements Initializable {
                 if(contractTableView.getSelectionModel().getSelectedItem() != null && contractTableView.getSelectionModel().getSelectedItem().getContractModel().getIsAccepted() == 0){
                     deleteBtn.setDisable(false);
                     updateBtn.setDisable(false);
+                } else {
+                    deleteBtn.setDisable(true);
+                    updateBtn.setDisable(true);
                 }
             }
         });
         initRegisterForm();
+    }
+
+    public void logOut(){
+        Stage genStage = (Stage) deleteBtn.getScene().getWindow();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn đăng suất không?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.YES){
+            genStage.close();
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
     public void initRegisterForm(){
@@ -82,6 +101,7 @@ public class RegisterController2 implements Initializable {
     }
 
     public void updateRegister(ActionEvent e){
+        currStage = (Stage) deleteBtn.getScene().getWindow();
 
         ContractBean contractBean = contractTableView.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader();
@@ -93,8 +113,6 @@ public class RegisterController2 implements Initializable {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-
-
         UserContractDetailController tmp = loader.getController();
         tmp.initData(contractBean);
         Scene scene = new Scene(parent);

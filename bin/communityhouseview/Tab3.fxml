@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1100.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1100.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="communityhousecontroller.Tab3Controller">
    <children>
       <AnchorPane prefHeight="645.0" prefWidth="250.0" style="-fx-background-color: #999999;">
          <children>
-            <JFXButton layoutX="30.0" layoutY="149.0" minHeight="60.0" minWidth="220.0" styleClass="tab" text=" Đơn đăng kí" textFill="WHITE">
+            <JFXButton layoutX="30.0" layoutY="149.0" minHeight="60.0" minWidth="220.0" onAction="#onBtn1" styleClass="tab" text=" Đơn đăng kí" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -26,7 +26,7 @@
                   <Insets left="-32.0" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="20.0" layoutY="23.0" minHeight="100.0" minWidth="250.0" styleClass="header" text="Trang chủ" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <JFXButton layoutX="20.0" layoutY="23.0" minHeight="100.0" minWidth="250.0" onAction="#onHomeBtn" styleClass="header" text="Trang chủ" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="30.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets left="-15.0" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="30.0" layoutY="317.0" minHeight="60.0" minWidth="220.0" styleClass="tab" text=" Quản lí sự kiện" textFill="WHITE">
+            <JFXButton layoutX="30.0" layoutY="317.0" minHeight="60.0" minWidth="220.0" onAction="#onBtn3" styleClass="tab" text=" Quản lí sự kiện" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Insets left="-4.6" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="30.0" layoutY="234.0" minHeight="60.0" minWidth="220.0" styleClass="tab" text="Quản lí CSVC" textFill="WHITE">
+            <JFXButton layoutX="30.0" layoutY="236.0" minHeight="60.0" minWidth="220.0" onAction="#onBtn2" styleClass="tab" text="Quản lí CSVC" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -61,22 +61,22 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <Label layoutX="993.0" layoutY="31.0" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="27.0">
+      <Label layoutX="993.0" layoutY="31.0" onMouseClicked="#logOut" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="27.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="309.0" layoutY="122.0" prefHeight="470.0" prefWidth="650.0" AnchorPane.topAnchor="106.0">
+      <TableView fx:id="eventTable" layoutX="309.0" layoutY="122.0" prefHeight="470.0" prefWidth="650.0" AnchorPane.topAnchor="106.0">
         <columns>
-            <TableColumn prefWidth="95.2000732421875" text="Mã sự kiện" />
-          <TableColumn prefWidth="129.60003662109375" text="Tên sự kiện" />
-          <TableColumn prefWidth="96.0" text="Địa điểm" />
-            <TableColumn prefWidth="135.99993896484375" text="Ngày" />
-            <TableColumn prefWidth="112.800048828125" text="Nội dung" />
-            <TableColumn prefWidth="79.2000732421875" text="SĐT" />
+            <TableColumn fx:id="eventIdCol" prefWidth="84.79998779296875" text="Mã sự kiện" />
+          <TableColumn fx:id="eventNameCol" prefWidth="126.4000244140625" text="Tên sự kiện" />
+          <TableColumn fx:id="hallNameCol" prefWidth="112.0" text="Địa điểm" />
+            <TableColumn fx:id="fromDateCol" prefWidth="86.39990234375" text="Từ ngày" />
+            <TableColumn fx:id="toDateCol" prefWidth="85.5999755859375" text="Đến ngày" />
+            <TableColumn fx:id="contentCol" prefWidth="160.0" text="Nội dung" />
         </columns>
       </TableView>
-      <JFXButton layoutX="980.0" layoutY="161.0" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text=" Thêm" AnchorPane.topAnchor="150.0">
+      <JFXButton layoutX="980.0" layoutY="161.0" onAction="#showAddEventView" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text=" Thêm" AnchorPane.topAnchor="150.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -84,7 +84,7 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <JFXButton layoutX="979.0" layoutY="239.0" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Xóa" AnchorPane.topAnchor="239.0">
+      <JFXButton fx:id="deleteBtn" layoutX="979.0" layoutY="242.0" onAction="#deleteEvent" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Xóa" AnchorPane.topAnchor="242.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -92,7 +92,7 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <JFXButton layoutX="979.0" layoutY="331.0" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Sửa">
+      <JFXButton fx:id="updateBtn" layoutX="979.0" layoutY="341.0" onAction="#showUpdateEventView" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Sửa">
          <font>
             <Font size="20.0" />
          </font>
@@ -100,25 +100,17 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <JFXButton layoutX="979.0" layoutY="424.0" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Thống kê">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <padding>
-            <Insets left="5.0" right="5.0" />
-         </padding>
-      </JFXButton>
-      <TextField layoutX="309.0" layoutY="61.0" prefHeight="30.0" prefWidth="150.0" promptText="Mã sự kiện" styleClass="searchField" AnchorPane.topAnchor="45.0">
+      <TextField fx:id="eventIdField" layoutX="309.0" layoutY="61.0" prefHeight="30.0" prefWidth="150.0" promptText="Mã sự kiện" styleClass="searchField" AnchorPane.topAnchor="45.0">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField layoutX="497.0" layoutY="45.0" prefHeight="30.0" prefWidth="150.0" promptText="Tên sự kiện" styleClass="searchField" AnchorPane.topAnchor="45.0">
+      <TextField fx:id="eventNameField" layoutX="497.0" layoutY="45.0" prefHeight="30.0" prefWidth="150.0" promptText="Tên sự kiện" styleClass="searchField" AnchorPane.topAnchor="45.0">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <JFXButton layoutX="885.0" layoutY="44.0" prefHeight="38.0" prefWidth="38.0" styleClass="searchIcon" text=" ">
+      <JFXButton fx:id="searchBtn" layoutX="885.0" layoutY="44.0" onAction="#searchBtn" prefHeight="38.0" prefWidth="38.0" styleClass="searchIcon" text=" ">
          <graphic>
             <FontAwesomeIconView fill="#666666" glyphName="SEARCH" size="28" stroke="#66666680" styleClass="searchIcon2" />
          </graphic>
@@ -126,11 +118,19 @@
             <Insets bottom="5.0" left="5.0" right="-2.0" top="3.0" />
          </padding>
       </JFXButton>
-      <Label layoutX="866.0" layoutY="4.0" text="Welcome Back, username" AnchorPane.rightAnchor="20.0">
+      <Label fx:id="welcome" layoutX="866.0" layoutY="4.0" text="Welcome Back, username" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <DatePicker layoutX="674.0" layoutY="44.0" prefHeight="38.0" prefWidth="192.0" promptText="Ngày sự kiện" />
+      <DatePicker fx:id="dateField" layoutX="674.0" layoutY="44.0" prefHeight="38.0" prefWidth="192.0" promptText="Ngày sự kiện" />
+      <JFXButton fx:id="resetBtn" layoutX="980.0" layoutY="435.0" onAction="#resetEvent" prefHeight="50.0" prefWidth="100.0" styleClass="CRUD" text="Reset">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </JFXButton>
    </children>
 </AnchorPane>

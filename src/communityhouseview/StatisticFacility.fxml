@@ -10,28 +10,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="communityhousecontroller.StatisticFacilityController">
    <children>
-      <TableView layoutX="55.0" layoutY="84.0" prefHeight="436.0" prefWidth="650.0">
-         <columns>
-            <TableColumn prefWidth="74.39996337890625" text="Mã CSVC" />
-            <TableColumn prefWidth="108.79998779296875" text="Tên CSVC" />
-            <TableColumn prefWidth="101.60003662109375" text="Chủng loại" />
-            <TableColumn prefWidth="152.79998779296875" text="Mô tả" />
-            <TableColumn prefWidth="130.40005493164062" text="Số lượng" />
-            <TableColumn prefWidth="79.2000732421875" text="Cho thuê" />
-            <TableColumn prefWidth="75.0" text="Giá thuê" />
-            <TableColumn prefWidth="75.0" text="Last Updated" />
-         </columns>
-      </TableView>
-      <Text layoutX="55.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Chủng loại:">
+      <Text layoutX="312.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Chủng loại:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ComboBox layoutX="161.0" layoutY="48.0" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #fff; -fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.topAnchor="48.0" />
-      <ComboBox layoutX="569.0" layoutY="49.0" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #fff; -fx-border-color: #666; -fx-border-width: 0.5;" />
-      <Text layoutX="450.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Sắp xếp theo:  ">
+      <ComboBox fx:id="kindComboBox" layoutX="418.0" layoutY="56.0" onAction="#onChangeKind" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #fff; -fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.topAnchor="56.0" />
+      <ComboBox fx:id="sortComboBox" layoutX="725.0" layoutY="55.0" onAction="#onChangeSort" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #fff; -fx-border-color: #666; -fx-border-width: 0.5;" />
+      <Text layoutX="606.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Sắp xếp theo:  ">
          <font>
             <Font size="18.0" />
          </font>
@@ -48,7 +36,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <JFXButton layoutX="725.0" layoutY="174.0" prefHeight="50.0" prefWidth="143.0" styleClass="CRUD" text="Hiện thông tin">
+      <JFXButton fx:id="kiemkeBtn" layoutX="21.0" layoutY="52.0" onAction="#onKiemkeBtn" prefHeight="35.0" prefWidth="136.0" styleClass="CRUD" text="Tạo kiểm kê">
          <font>
             <Font size="20.0" />
          </font>
@@ -56,13 +44,17 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </JFXButton>
-      <JFXButton layoutX="725.0" layoutY="291.0" prefHeight="50.0" prefWidth="143.0" styleClass="CRUD" text="Tạo kiểm kê">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <padding>
-            <Insets left="5.0" right="5.0" />
-         </padding>
-      </JFXButton>
+      <TableView fx:id="table" layoutX="21.0" layoutY="100.0" prefHeight="436.0" prefWidth="857.0">
+         <columns>
+            <TableColumn fx:id="c1" prefWidth="74.39996337890625" text="Mã CSVC" />
+            <TableColumn fx:id="c2" prefWidth="108.79998779296875" text="Tên CSVC" />
+            <TableColumn fx:id="c3" prefWidth="101.60003662109375" text="Chủng loại" />
+            <TableColumn fx:id="c4" prefWidth="152.79998779296875" text="Mô tả" />
+            <TableColumn fx:id="c5" prefWidth="130.40005493164062" text="Số lượng" />
+            <TableColumn fx:id="c6" prefWidth="79.2000732421875" text="Cho thuê" />
+            <TableColumn fx:id="c7" prefWidth="75.0" text="Giá thuê" />
+            <TableColumn fx:id="c8" prefWidth="132.00002441406252" text="Last Updated" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

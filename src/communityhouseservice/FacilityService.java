@@ -1,6 +1,8 @@
 package communityhouseservice;
 
 import communityhousemodel.FacilityModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import services.MysqlConnection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -69,6 +71,7 @@ public class FacilityService {
         }
         st.close();
         connection.close();
+        System.out.println(list.size());
         return list;
     }
 
@@ -257,7 +260,7 @@ public class FacilityService {
 
     public boolean updateFacilityAvailable(int facilityId, int change) throws SQLException, ClassNotFoundException {
         java.sql.Connection connection = MysqlConnection.getMysqlConnection();
-        String query = "UPDATE facility set available = available + ? where facility_id = " + facilityId;
+        String query = "UPDATE facility set last_update = NOW(), available = available + ? where facility_id = " + facilityId;
         PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         try {
             preparedStatement.setInt(1, change);
@@ -270,6 +273,54 @@ public class FacilityService {
         }
     }
 
+    public ObservableList<String> getKinds(){
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            Connection connection = (Connection) MysqlConnection.getMysqlConnection();
+            String query = "select distinct facility_kind from facility";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String kind = rs.getString(1);
+                list.add(kind);
+            }
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<FacilityModel> getFacilitiesByKind(String kind){
+        ObservableList<FacilityModel> list = FXCollections.observableArrayList();
+        try {
+            java.sql.Connection connection = MysqlConnection.getMysqlConnection();
+            String query = "SELECT * from facility where facility_kind='" + kind + "'";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                FacilityModel f = new FacilityModel();
+                f.setFacilityId(rs.getInt("facility_id"));
+                f.setFacilityName(rs.getString("facility_name"));
+                f.setTotalQuantity(rs.getInt("total_quantity"));
+                f.setAvailable(rs.getInt("available"));
+                f.setPrice(rs.getLong("price"));
+                f.setDesciption(rs.getString("description"));
+                f.setLastUpdate(rs.getTimestamp("last_update"));
+                f.setFacilityKind(rs.getString("facility_kind"));
+
+                list.add(f);
+            }
+            st.close();
+            connection.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     /**
      * This method is used to get a list of all facilities by facilityName or
      * facilityKind
@@ -278,10 +329,10 @@ public class FacilityService {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public List<FacilityModel> searchFacility(String facilityName, String facilityKind)
+    public List<FacilityModel> searchFacility(String id, String facilityName, String facilityKind)
             throws SQLException, ClassNotFoundException {
         Connection connection = (Connection) MysqlConnection.getMysqlConnection();
-        String query = "SELECT * from facility where facility_name like '%" + facilityName
+        String query = "SELECT * from facility where facility_id like '%"+ id + "%' and facility_name like '%" + facilityName
                 + "%' and facility_kind like '%" + facilityKind + "%'";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);

@@ -62,7 +62,7 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <Label fx:id="signOut" layoutX="993.0" layoutY="31.0" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="27.0">
+      <Label layoutX="993.0" layoutY="31.0" onMouseClicked="#logOut" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="27.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -79,7 +79,7 @@
             <TableColumn fx:id="isAcceptedCol" prefWidth="76.00003662109373" text="Phê duyệt" />
         </columns>
       </TableView>
-      <TextField fx:id="contactId" layoutX="290.0" layoutY="53.0" prefHeight="30.0" prefWidth="150.0" promptText="Mã đơn" styleClass="searchField" AnchorPane.topAnchor="53.0">
+      <TextField fx:id="contractId" layoutX="290.0" layoutY="53.0" prefHeight="30.0" prefWidth="150.0" promptText="Mã đơn" styleClass="searchField" AnchorPane.topAnchor="53.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -89,7 +89,7 @@
             <Font size="16.0" />
          </font>
       </TextField>
-      <JFXButton layoutX="875.0" layoutY="52.0" prefHeight="38.0" prefWidth="38.0" styleClass="searchIcon" text=" ">
+      <JFXButton layoutX="875.0" layoutY="52.0" onAction="#onSearchButton" prefHeight="38.0" prefWidth="38.0" styleClass="searchIcon" text=" ">
          <graphic>
             <FontAwesomeIconView fill="#666666" glyphName="SEARCH" size="28" stroke="#66666680" styleClass="searchIcon2" />
          </graphic>
@@ -103,12 +103,17 @@
          </font>
       </Label>
       <DatePicker fx:id="fromDate" layoutX="662.0" layoutY="52.0" prefHeight="38.0" prefWidth="192.0" promptText="Ngày sự kiện" />
-      <JFXToggleButton fx:id="isAccepted" layoutX="271.0" layoutY="-4.0" text="Chưa phê duyệt" textFill="#666666" AnchorPane.rightAnchor="636.0">
+      <JFXToggleButton fx:id="isAccepted" layoutX="271.0" layoutY="-4.0" onAction="#onSearchButton" text="Chưa phê duyệt" textFill="#666666" AnchorPane.rightAnchor="636.0">
          <font>
             <Font size="16.0" />
          </font>
       </JFXToggleButton>
-      <JFXButton layoutX="1019.0" layoutY="52.0" prefHeight="38.0" prefWidth="38.0" styleClass="searchIcon" text="Xóa">
+      <JFXButton fx:id="deleteBtn" layoutX="1019.0" layoutY="52.0" onAction="#onBtnDelete" prefHeight="38.0" prefWidth="38.0" styleClass="searchIcon" text="Xóa">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="-2.0" top="3.0" />
+         </padding>
+      </JFXButton>
+      <JFXButton layoutX="954.0" layoutY="52.0" onAction="#onBtnAdd" prefHeight="38.0" prefWidth="58.0" styleClass="searchIcon" text="Thêm">
          <padding>
             <Insets bottom="5.0" left="5.0" right="-2.0" top="3.0" />
          </padding>

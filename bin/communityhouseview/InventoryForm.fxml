@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="900.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="900.0" style="-fx-background-color: #fff;" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="communityhousecontroller.InventoryFormController">
    <children>
       <GridPane layoutX="76.0" layoutY="59.0" prefHeight="100.0" prefWidth="500.0" style="-fx-border-color: #000;" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="20.0">
         <columnConstraints>
@@ -113,14 +112,14 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="75.0" layoutY="350.0" prefHeight="446.0" prefWidth="754.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="71.0">
+      <TableView fx:id="table" layoutX="75.0" layoutY="350.0" prefHeight="446.0" prefWidth="754.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="71.0">
         <columns>
-          <TableColumn prefWidth="44.79997253417969" text="Mã" />
-          <TableColumn prefWidth="150.3999252319336" text="Tên CSVC" />
+          <TableColumn fx:id="c1" prefWidth="44.79997253417969" text="Mã" />
+          <TableColumn fx:id="c2" prefWidth="150.3999252319336" text="Tên CSVC" />
             <TableColumn minWidth="111.46672058105469" prefWidth="129.60008239746094" text="Theo thống kê trên máy">
                <columns>
-                  <TableColumn prefWidth="82.0" text="Số lượng" />
-                  <TableColumn prefWidth="82.0" text="Cho thuê" />
+                  <TableColumn fx:id="c3" prefWidth="82.0" text="Số lượng" />
+                  <TableColumn fx:id="c4" prefWidth="82.0" text="Cho thuê" />
                </columns>
             </TableColumn>
             <TableColumn prefWidth="121.60003662109375" text="Theo kiểm kê">

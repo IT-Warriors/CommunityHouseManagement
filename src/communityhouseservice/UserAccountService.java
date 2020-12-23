@@ -4,6 +4,8 @@ import communityhousemodel.UserAccountModel;
 import services.MysqlConnection;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserAccountService {
     public UserAccountModel getUserById(int user_id) throws SQLException, ClassNotFoundException {
@@ -39,5 +41,24 @@ public class UserAccountService {
         } finally {
             preparedStatement.close();
         }
+    }
+
+    public List<UserAccountModel> getAllUser() throws SQLException, ClassNotFoundException {
+        Connection connection = MysqlConnection.getMysqlConnection();
+        String query = "select * from users_account";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        List<UserAccountModel> list = new ArrayList<>();
+        while (rs.next()){
+            UserAccountModel u = new UserAccountModel();
+            u.setUserId(rs.getInt("user_id"));
+            u.setUsername(rs.getString("username"));
+            u.setPassword(rs.getString("password"));
+            u.setPersionId(rs.getInt("person_id"));
+            u.setPhoneNumber(rs.getString("phone_number"));
+            u.setType(rs.getInt("type"));
+            list.add(u);
+        }
+        return list;
     }
 }

@@ -3,6 +3,8 @@ package communityhousebean;
 import Bean.NhanKhauBean;
 import communityhousemodel.UserAccountModel;
 
+import java.util.List;
+
 public class UserBean {
     private UserAccountModel accountModel;
     private NhanKhauBean nhanKhauBean;

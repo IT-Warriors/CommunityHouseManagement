@@ -80,7 +80,7 @@ public class FacilityModel {
         this.available = available;
     }
 
-    public double getPrice() {
+    public long getPrice() {
         return price;
     }
 

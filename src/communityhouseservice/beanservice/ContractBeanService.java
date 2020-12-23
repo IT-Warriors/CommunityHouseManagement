@@ -144,32 +144,33 @@ public class ContractBeanService {
 
     }
 
-    public List<ContractBean> searchContract(int contractId, String eventName, String fromDate){
+    public List<ContractBean> searchContract(String contractId, String eventName, String fromDate, String isAccepted) throws SQLException, ClassNotFoundException {
         ContractService contractService = new ContractService();
         List<ContractBean> contractBeans = new ArrayList<>();
-        try {
-            List<ContractModel> contractModelList = contractService.getListContract();
-            NhanKhauService nhanKhauService = new NhanKhauService();
-            EventBeanService eventBeanService = new EventBeanService();
-            UserAccountService userAccountService = new UserAccountService();
-            for (ContractModel c: contractModelList){
-                ContractBean contractBean = new ContractBean();
-                List<HireBean> list = getListFacilityHire(c.getContractId());
-                UserAccountModel userAccountModel = userAccountService.getUserById(c.getUserId());
-                NhanKhauBean nhanKhauBean = nhanKhauService.getNhanKhauById(userAccountModel.getPersionId());
-                EventBean eventBean = eventBeanService.getEventBeanById(c.getEventId());
-                contractBean.setEventBean(eventBean);
-                contractBean.setContractModel(c);
-                contractBean.setFacilityModelList(list);
-                contractBean.setNhanKhauBean(nhanKhauBean);
-                contractBean.setUserAccountModel(userAccountModel);
-                contractBeans.add(contractBean);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        NhanKhauService nhanKhauService = new NhanKhauService();
+        EventBeanService eventBeanService = new EventBeanService();
+        UserAccountService userAccountService = new UserAccountService();
+        com.mysql.jdbc.Connection connection = (com.mysql.jdbc.Connection) MysqlConnection.getMysqlConnection();
+        String query = "select * from contract c, event e where c.event_id = e.event_id and c.contract_id like '%"+ contractId + "%'" +
+                " and e.event_name like '%" + eventName +"%' and e.from_date like '%" + fromDate + "%' and is_accepted like '%" + isAccepted + "%'";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()){
+            ContractBean contractBean = new ContractBean();
+            ContractModel contractModel = contractService.getContractById(rs.getInt("contract_id"));
+            UserAccountModel userAccountModel = userAccountService.getUserById(rs.getInt("user_id"));
+            NhanKhauBean nhanKhauBean = nhanKhauService.getNhanKhauById(userAccountModel.getPersionId());
+            EventBean eventBean = eventBeanService.getEventBeanById(rs.getInt("event_id"));
+            List<HireBean> hireBeans = getListFacilityHire(rs.getInt("contract_id"));
+            contractBean.setUserAccountModel(userAccountModel);
+            contractBean.setContractModel(contractModel);
+            contractBean.setFacilityModelList(hireBeans);
+            contractBean.setEventBean(eventBean);
+            contractBean.setNhanKhauBean(nhanKhauBean);
+            contractBeans.add(contractBean);
         }
+        st.close();
+        connection.close();
         return contractBeans;
     }
 

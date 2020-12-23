@@ -89,7 +89,7 @@
                         <Insets bottom="30.0" left="-150.0" right="-150.0" top="-30.0" />
                      </GridPane.margin>
                   </AnchorPane>
-                  <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Button mnemonicParsing="false" onAction="#buttonCancel" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets bottom="100.0" left="400.0" />
                      </GridPane.margin>

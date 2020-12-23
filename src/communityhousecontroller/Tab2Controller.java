@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXRadioButton;
 
 import communityhousemodel.FacilityModel;
 import communityhouseservice.FacilityService;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,16 +35,13 @@ import javafx.stage.Stage;
 
 
 public class Tab2Controller implements Initializable{
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		buildData();
-		buildRadios();
-	}
-
-	public ObservableList<FacilityModel> facilityData;
+	public static ObservableList<FacilityModel> facilityData;
+	public static FacilityModel choosingFacModel;
 	public FacilityService facService = new FacilityService();
 	HomePageController homePageController = new HomePageController();
 	
+	public static Stage stage, currStage;
+
 	@FXML TableView<FacilityModel> facilityTable;
 	@FXML private TableColumn<FacilityModel, String> c1;
 	@FXML private TableColumn<FacilityModel, String> c2;
@@ -60,25 +58,65 @@ public class Tab2Controller implements Initializable{
 	@FXML private TextField search3;
 	@FXML private JFXButton searchBtn;
 	@FXML private JFXButton resetBtn;
+	@FXML private Label welcome;
 	
+	ToggleGroup status = new ToggleGroup();
 	@FXML private JFXRadioButton radio1;
 	@FXML private JFXRadioButton radio2;
 	@FXML private JFXRadioButton radio3;
 	
 	@FXML private JFXButton addBtn;
 	@FXML private JFXButton delBtn;
-	@FXML private JFXButton changeBtn;
+	@FXML private JFXButton updateBtn;
 	@FXML private JFXButton statisticBtn;
 	
-	public void onLogoutLabel() {
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		welcome.setText("Welcome back, " + LoginController.currentUser.getUsername());
+		buildData();
+		buildRadios();
 		
+	}
+	
+	public void logOut() {
+		Stage genStage = (Stage) resetBtn.getScene().getWindow();
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn đăng suất không?", ButtonType.YES, ButtonType.NO);
+		alert.showAndWait();
+		if(alert.getResult() == ButtonType.YES){
+			genStage.close();
+			Platform.exit();
+			System.exit(0);
+		}
 	};
 	
 	public void onSearchBtn() {
 		try {
-			radio1.setSelected(true);
-			facilityData = FXCollections.observableArrayList(facService.searchFacility(search2.getText(), search3.getText()));
+			facilityData = FXCollections.observableArrayList(facService.searchFacility(search1.getText(), search2.getText(), search3.getText()));
 			facilityTable.setItems(facilityData);
+			
+			JFXRadioButton rb = (JFXRadioButton)status.getSelectedToggle(); 
+            if (rb != null) { 
+                String s = rb.getText();
+                if(! s.equals("Tất cả")) {
+                	if(s.equals("Đang cho thuê")) {
+                		int sz = facilityData.size();
+                		for(int i=0; i<sz; i++) {
+                			if(facilityData.get(i).getAvailable() == facilityData.get(i).getTotalQuantity()) {
+                				facilityData.remove(i);
+                				i--; sz--;
+                			}
+                		}
+                	} else {
+                		int sz = facilityData.size();
+                		for(int i=0; i<sz; i++) {
+                			if(facilityData.get(i).getAvailable() != 0) {
+                				facilityData.remove(i);
+                				i--; sz--;
+                			}
+                		}
+                	}
+                }
+            } 
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
 			a.setHeaderText("Có lỗi xảy ra");
@@ -96,51 +134,27 @@ public class Tab2Controller implements Initializable{
 	}
 	
 	public void buildRadios() {
-		ToggleGroup status = new ToggleGroup();
 		radio1.setToggleGroup(status);
 		radio2.setToggleGroup(status);
 		radio3.setToggleGroup(status);
 		radio1.setSelected(true);
 		status.selectedToggleProperty().addListener(new ChangeListener<Toggle>() { 
 			@Override
-            public void changed(ObservableValue<? extends Toggle> ob, Toggle o1, Toggle o2) 
-            { 
-                JFXRadioButton rb = (JFXRadioButton)status.getSelectedToggle(); 
-                if (rb != null) { 
-                    String s = rb.getText();
-                    onSearchBtn();
-                    if(! s.equals("Tất cả")) {
-                    	if(s.equals("Đang cho thuê")) {
-                    		int sz = facilityData.size();
-                    		for(int i=0; i<sz; i++) {
-                    			if(facilityData.get(i).getAvailable() == facilityData.get(i).getTotalQuantity()) {
-                    				facilityData.remove(i);
-                    				i--; sz--;
-                    			}
-                    		}
-                    	} else {
-                    		int sz = facilityData.size();
-                    		for(int i=0; i<sz; i++) {
-                    			if(facilityData.get(i).getAvailable() != 0) {
-                    				facilityData.remove(i);
-                    				i--; sz--;
-                    			}
-                    		}
-                    	}
-                    }
-                } 
+            public void changed(ObservableValue<? extends Toggle> ob, Toggle o1, Toggle o2) { 
+                onSearchBtn();
             }
         });
 	}
 	
 	public void onAddBtn() {
 		try {
-			Stage s = new Stage();
+			currStage = (Stage) addBtn.getScene().getWindow();
+			stage = new Stage();
 			Scene scene;
 			scene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/AddFacility.fxml")));
-			s.setScene(scene);;
-			s.centerOnScreen();
-			s.show();
+			stage.setScene(scene);;
+			stage.centerOnScreen();
+			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -155,6 +169,7 @@ public class Tab2Controller implements Initializable{
 	        	FacilityModel facModel = facilityTable.getSelectionModel().getSelectedItem();
 	        	if(facService.deleteFacility(facModel.getFacilityId())==true) {
 	        		facilityData.remove(facModel);
+
 	        		Alert b = new Alert(AlertType.INFORMATION);
 	        		b.setHeaderText("Xóa thành công");
 	        		b.showAndWait();
@@ -170,15 +185,15 @@ public class Tab2Controller implements Initializable{
 		}
 	}
 
-	public void onChangeBtn() {
+	public void onUpdateBtn() {
 		try {
-			Stage s = new Stage();
+			choosingFacModel = facilityTable.getSelectionModel().getSelectedItem();
+			stage = new Stage();
 			Scene scene;
-			//this will be replaced by ChangeFacility.fxml in future
-			scene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/AddFacility.fxml"))); 
-			s.setScene(scene);;
-			s.centerOnScreen();
-			s.show();
+			scene = new Scene(FXMLLoader.load(getClass() .getResource("/communityhouseview/UpdateFacility.fxml"))); 
+			stage.setScene(scene);;
+			stage.centerOnScreen();
+			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -199,7 +214,7 @@ public class Tab2Controller implements Initializable{
 	
 	public void buildData() {
 		try {
-			facilityData = FXCollections.observableArrayList(facService.getAllFacilities());
+			facilityData = FXCollections.observableList(facService.getAllFacilities());
 			System.out.println(facilityData);
 	        
 	        c1.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getFacilityId())));
@@ -208,11 +223,13 @@ public class Tab2Controller implements Initializable{
 	        c4.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDesciption()));
 	        c5.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getTotalQuantity())));
 	        c6.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getTotalQuantity()-cellData.getValue().getAvailable())));
+	        
+	        //on double clicked for row
 	        facilityTable.setRowFactory( tv -> {
 	            TableRow<FacilityModel> row = new TableRow<>();
 	            row.setOnMouseClicked(event -> {
-	                if (event.getClickCount() >= 2 && (! row.isEmpty()) ) {
-	                    FacilityModel rowData = row.getItem();
+	                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+	                    onUpdateBtn();
 	                }
 	            });
 	            return row ;
@@ -224,7 +241,6 @@ public class Tab2Controller implements Initializable{
 			e.printStackTrace();
 		}
 	}
-
 	public void onBtn1(ActionEvent e){
 		homePageController.onBtn1(e);
 	}

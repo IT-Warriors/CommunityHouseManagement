@@ -5,6 +5,7 @@ import services.MysqlConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ContractService {
@@ -140,5 +141,17 @@ public class ContractService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public Date getLasted() throws SQLException, ClassNotFoundException {
+        Connection connection = MysqlConnection.getMysqlConnection();
+        String query = "select max(create_date) from contract where is_accepted = 0";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Date lastedDate = new Date();
+        while (rs.next()){
+            lastedDate = rs.getDate("max(create_date)");
+        }
+        return lastedDate;
     }
 }

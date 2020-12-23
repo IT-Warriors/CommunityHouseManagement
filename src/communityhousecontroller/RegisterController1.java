@@ -9,6 +9,7 @@ import communityhouseservice.EventService;
 import communityhouseservice.FacilityService;
 import communityhouseservice.HallService;
 import communityhouseservice.beanservice.ContractBeanService;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,6 +28,8 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import quanlynhankhau.QuanLyNhanKhau;
+import views.LoginUI;
 
 import java.io.IOException;
 import java.net.URL;
@@ -74,9 +77,13 @@ public class RegisterController1 implements Initializable {
     private TextField editEventName;
     @FXML
     private TextField editContent;
+    @FXML
+    private Label welcome;
+
     private ObservableList<HireBean> hireBeanObservableList;
 
     static Stage stage;
+    static Stage insertStage;
 
     UserController userController = new UserController();
 
@@ -100,6 +107,18 @@ public class RegisterController1 implements Initializable {
                 }
             }
         });
+        welcome.setText("Welcome back, " + LoginController.currentUser.getUsername());
+    }
+
+    public void logOut(){
+        Stage genStage = (Stage) addBtn.getScene().getWindow();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn đăng suất không?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.YES){
+            genStage.close();
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
     public void initData(UserBean userBean){
@@ -226,6 +245,7 @@ public class RegisterController1 implements Initializable {
     }
 
     public void showContract(ActionEvent e){
+        insertStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         ContractBean contract = new ContractBean();
         LocalDate fromDate = editFromDate.getValue();
         LocalDate toDate = editToDate.getValue();
@@ -233,7 +253,7 @@ public class RegisterController1 implements Initializable {
         String eventName = editEventName.getText();
         String content = editContent.getText();
 
-        if(!acceptCheckBox.isSelected() || phoneNum == null || editHall.getValue() == null || fromDate == null || toDate == null || eventName == null || content == null){
+        if(!acceptCheckBox.isSelected() || phoneNum.equals("") || editHall.getValue() == null || fromDate == null || toDate == null || eventName.equals("") || content.equals("")){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chưa điền đầy đủ thông tin", ButtonType.OK);
             alert.showAndWait();
         } else{

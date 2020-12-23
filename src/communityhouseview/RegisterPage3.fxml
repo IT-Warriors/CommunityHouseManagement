@@ -64,17 +64,27 @@
                 <Font size="30.0" />
             </font>
         </Text>
-        <Label layoutX="391.0" layoutY="144.0" text="Họ và tên" />
-        <Label layoutX="369.0" layoutY="185.0" text="Số điện thoại" />
-        <Label layoutX="733.0" layoutY="144.0" text="Giới tính" />
-        <Label layoutX="336.0" layoutY="230.0" text="Địa chỉ thường trú" />
-        <Label layoutX="677.0" layoutY="185.0" text="Số chứng minh thư" />
-        <Label layoutX="728.0" layoutY="231.0" text="Năm sinh" />
+        <Label layoutX="687.0" layoutY="27.0" onMouseClicked="#logOut" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="welcome" layoutX="560.0" text="Welcome Back, username" AnchorPane.rightAnchor="20.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="369.0" layoutY="144.0" text="Họ và tên" />
+        <Label layoutX="349.0" layoutY="185.0" text="Số điện thoại" />
+        <Label layoutX="719.0" layoutY="144.0" text="Giới tính" />
+        <Label layoutX="321.0" layoutY="230.0" text="Địa chỉ thường trú" />
+        <Label layoutX="663.0" layoutY="185.0" text="Số chứng minh thư" />
+        <Label layoutX="714.0" layoutY="230.0" text="Năm sinh" />
         <TextField fx:id="editName" editable="false" layoutX="449.0" layoutY="140.0" prefWidth="200.0" />
         <TextField fx:id="editBirthDate" editable="false" layoutX="791.0" layoutY="226.0" prefWidth="200.0" />
         <TextField fx:id="editCMND" editable="false" layoutX="791.0" layoutY="181.0" prefWidth="200.0" />
         <TextField fx:id="editPhone" editable="false" layoutX="449.0" layoutY="181.0" prefWidth="200.0" />
         <TextField fx:id="editAddress" editable="false" layoutX="449.0" layoutY="226.0" prefWidth="200.0" />
-        <TextField fx:id="editGender" layoutX="791.0" layoutY="140.0" prefWidth="200.0" />
+        <TextField fx:id="editGender" editable="false" layoutX="791.0" layoutY="140.0" prefWidth="200.0" />
     </children>
 </AnchorPane>

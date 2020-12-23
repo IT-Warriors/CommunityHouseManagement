@@ -66,53 +66,63 @@
                 </JFXButton>
             </children>
         </AnchorPane>
+        <Label layoutX="687.0" layoutY="27.0" onMouseClicked="#logOut" style="-fx-font-style: italic; -fx-text-fill: #666666; -fx-cursor: hand;" text="Đăng xuất" underline="true" AnchorPane.rightAnchor="25.0">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="welcome" layoutX="560.0" text="Welcome Back, username" AnchorPane.rightAnchor="20.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
         <Text layoutX="466.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đơn đăng ký sử dụng nhà văn hóa">
             <font>
                 <Font size="30.0" />
             </font>
         </Text>
-        <Label layoutX="292.0" layoutY="160.0" text="Địa chỉ thường trú" />
-        <Label layoutX="335.0" layoutY="113.0" text="Họ và tên" />
-        <Label layoutX="344.0" layoutY="203.0" text="Từ ngày" />
-        <Label layoutX="694.0" layoutY="113.0" text="Số điện thoại" />
+        <Label layoutX="270.0" layoutY="160.0" text="Địa chỉ thường trú" />
+        <Label layoutX="318.0" layoutY="113.0" text="Họ và tên" />
+        <Label layoutX="322.0" layoutY="203.0" text="Từ ngày" />
+        <Label layoutX="676.0" layoutY="113.0" text="Số điện thoại" />
         <TextField fx:id="editName" editable="false" layoutX="399.0" layoutY="109.0" prefHeight="26.0" prefWidth="200.0" />
         <TextField fx:id="editPhone" layoutX="772.0" layoutY="108.0" prefHeight="26.0" prefWidth="200.0" />
         <TextField fx:id="editAddress" editable="false" layoutX="399.0" layoutY="155.0" prefHeight="26.0" prefWidth="200.0" />
-        <Label layoutX="673.0" layoutY="160.0" text="Đăng ký sử dụng" />
+        <Label layoutX="658.0" layoutY="160.0" text="Đăng ký sử dụng" />
         <DatePicker fx:id="editFromDate" layoutX="399.0" layoutY="193.0" prefWidth="200.0" />
-        <Label layoutX="711.0" layoutY="203.0" text="Đến ngày" />
+        <Label layoutX="694.0" layoutY="203.0" text="Đến ngày" />
         <DatePicker fx:id="editToDate" layoutX="772.0" layoutY="193.0" prefWidth="200.0" />
-        <Text layoutX="289.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kèm theo các trang thiết bị" />
-        <Label layoutX="713.0" layoutY="347.0" text="Số lượng" />
-        <Label layoutX="365.0" layoutY="347.0" text="Tên" />
-        <Spinner fx:id="editQuantity" layoutX="772.0" layoutY="343.0" prefWidth="200.0">
+        <Text layoutX="291.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kèm theo các trang thiết bị" />
+        <Label layoutX="703.0" layoutY="319.0" text="Số lượng" />
+        <Label layoutX="367.0" layoutY="319.0" text="Tên" />
+        <Spinner fx:id="editQuantity" layoutX="774.0" layoutY="315.0" prefWidth="200.0">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
         </Spinner>
-        <Button fx:id="addBtn" layoutX="992.0" layoutY="343.0" mnemonicParsing="false" onAction="#addHire">
+        <Button fx:id="addBtn" layoutX="994.0" layoutY="315.0" mnemonicParsing="false" onAction="#addHire">
             <graphic>
                 <FontAwesomeIconView glyphName="PLUS" />
             </graphic>
         </Button>
-        <TableView fx:id="hireFacilities" layoutX="399.0" layoutY="382.0" prefHeight="155.0" prefWidth="574.0">
+        <TableView fx:id="hireFacilities" layoutX="401.0" layoutY="354.0" prefHeight="155.0" prefWidth="574.0">
             <columns>
                 <TableColumn fx:id="indexCol" prefWidth="87.9998779296875" text="STT" />
                 <TableColumn fx:id="nameCol" prefWidth="244.800048828125" text="Tên" />
                 <TableColumn fx:id="quantityCol" prefWidth="241.60009765625" text="Số lượng" />
             </columns>
         </TableView>
-        <Button fx:id="deleteBtn" layoutX="936.0" layoutY="549.0" mnemonicParsing="false" onAction="#deleteHire" text="Xóa" />
+        <Button fx:id="deleteBtn" layoutX="938.0" layoutY="521.0" mnemonicParsing="false" onAction="#deleteHire" text="Xóa" />
         <CheckBox fx:id="acceptCheckBox" layoutX="399.0" layoutY="584.0" mnemonicParsing="false" text="Tôi đồng ý và cam kết tuân thủ mọi quy định của nhà văn hóa" />
         <Button layoutX="973.0" layoutY="593.0" mnemonicParsing="false" onAction="#showContract" text="Xem hợp đồng" />
         <Button layoutX="872.0" layoutY="593.0" mnemonicParsing="false" onAction="#resetButton" text="Đặt lại" />
-      <Label layoutX="324.0" layoutY="252.0" text="Tên sự kiện" />
-      <Label layoutX="711.0" layoutY="252.0" text="Nội dung" />
+      <Label layoutX="303.0" layoutY="252.0" text="Tên sự kiện" />
+      <Label layoutX="694.0" layoutY="252.0" text="Nội dung" />
       <TextField fx:id="editEventName" layoutX="399.0" layoutY="248.0" prefHeight="26.0" prefWidth="200.0" />
       <TextField fx:id="editContent" layoutX="772.0" layoutY="247.0" prefHeight="26.0" prefWidth="200.0" />
       <ComboBox fx:id="editHall" layoutX="772.0" layoutY="156.0" prefHeight="26.0" prefWidth="200.0" />
-      <ComboBox fx:id="editFacility" layoutX="399.0" layoutY="343.0" prefHeight="26.0" prefWidth="200.0" />
-      <TextField fx:id="totalFee" layoutX="458.0" layoutY="549.0" prefHeight="26.0" prefWidth="97.0" />
-      <Text layoutX="399.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng phí:" wrappingWidth="60.799999999999955" />
+      <ComboBox fx:id="editFacility" layoutX="401.0" layoutY="315.0" prefHeight="26.0" prefWidth="200.0" />
+      <TextField fx:id="totalFee" layoutX="460.0" layoutY="521.0" prefHeight="26.0" prefWidth="97.0" />
+      <Text layoutX="377.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng phí:" wrappingWidth="72.79999999999995" />
     </children>
 </AnchorPane>
